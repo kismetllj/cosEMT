@@ -252,7 +252,7 @@ while FE<maxFE
                rb=b;
                fit2{i}=YY2{i}./repmat(Mpopobj2{i},size(YY2{i},1),1)*rb+MSE2{i}./repmat(MMSE2{i},size(MSE2{i},1),1)*ra;
                piror_u2{i}=sort(fit2{i});
-               piror_u2{i}=piror_u2{i}(1:3,1);
+               piror_u2{i}=piror_u2{i}(1:u,1);
             
                 for j=1:size(fit2{i},1)
                    for k=1:size(piror_u2{i},1)
@@ -343,16 +343,6 @@ while FE<maxFE
                 length3(j,1)=size(atpop{j},1);
             end
             tnum=sum(length3,1);
-%             if tnum==0 
-%                 for j=1:num_auxiliary
-%                     L1{j}=randi([15,25]);
-%                 end
-%                 Lsum=0;
-%                 for j=1:num_auxiliary
-%                     Lsum=Lsum+size(L1{j});
-%                 end
-%                 L2{num_auxiliary+1}=N-Lsum;
-%             else
                 for j=1:num_auxiliary
                     L1{j}=ceil(N*length3(j,1)/tnum*length3(j,1)/length1(j,1));
                 end
@@ -361,7 +351,6 @@ while FE<maxFE
                     L1sum=L1sum+size(L1{j});
                 end
                 L2{num_auxiliary+1}=N-L1sum;
-%             end
           end
 gbest=[];
 for j=1:num_auxiliary
